@@ -36,8 +36,8 @@ jobs:
       id: cache
       with:
         path: 
-          - ${{ env.pythonLocation }}
-          - ~/.envs
+          ${{ env.pythonLocation }}
+          ~/.envs
         key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-test-v02
     
     - name: Install Hatch
