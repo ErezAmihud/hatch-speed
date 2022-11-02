@@ -23,7 +23,7 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = ["PySide6", "numpy", "PySide2"]
+dependencies = ["PySide6==6.4.0", "numpy", "Django", "opencv-python", "pygame"]
 dynamic = ["version"]
 
 [project.urls]
