@@ -35,7 +35,9 @@ jobs:
     - uses: actions/cache@v3
       id: cache
       with:
-        path: ${{ env.pythonLocation }}
+        path: 
+          - ${{ env.pythonLocation }}
+          - ~/.envs
         key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-test-v02
     
     - name: Install Hatch
@@ -45,14 +47,8 @@ jobs:
     - name: Set the env directory
       run: hatch config set dirs.env.virtual ~/.envs
 
-    - uses: actions/cache@v3
-      id: cache-env
-      with:
-        path: ~/.envs
-        key: ${{ runner.os }}-python-envs-${{ hashFiles('pyproject.toml') }}-test-v02
-    
     - name: Create env
-      if: steps.cache-env.outputs.cache-hit != 'true'
+      if: steps.cache.outputs.cache-hit != 'true'
       run: hatch env create
 
     - name: Run tests
