@@ -33,10 +33,10 @@ jobs:
         python-version: ${{ matrix.python-version }}
     
     - uses: actions/cache@v3
-        id: cache
-        with:
-          path: ${{ env.pythonLocation }}
-          key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-test-v02
+      id: cache
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ runner.os }}-python-${{ env.pythonLocation }}-${{ hashFiles('pyproject.toml') }}-test-v02
     
     - name: Install Hatch
       if: steps.cache.outputs.cache-hit != 'true'
